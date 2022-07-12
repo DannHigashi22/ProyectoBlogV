@@ -9,4 +9,7 @@ $port='3307';
 $db=mysqli_connect($server,$user,$pass,$database,$port);
 
 mysqli_query($db,"SET NAMES 'utf8'");
+
+//iniciar session
+session_start();
 ?>
