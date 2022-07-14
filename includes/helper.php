@@ -33,7 +33,7 @@ function getCategorias($conex){
 }
 
 function getLatestEntradas($conex){
-    $sql='select e.*,c.* from entradas e 
+    $sql='select e.*,c.nombre as categoria from entradas e 
     inner join categorias c ON c.id=e.categoria_id 
     ORDER BY e.id DESC Limit 4;';
     $query=mysqli_query($conex,$sql);

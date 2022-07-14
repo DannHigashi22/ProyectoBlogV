@@ -11,5 +11,7 @@ $db=mysqli_connect($server,$user,$pass,$database,$port);
 mysqli_query($db,"SET NAMES 'utf8'");
 
 //iniciar session
-session_start();
+if (!isset($_SESSION)) {
+    session_start();
+}
 ?>

@@ -11,7 +11,7 @@
                         <a href="">
                             <h2><?=$entrada['titulo']?></h2>
                             <p><?= substr($entrada['descripcion'],0,200)." ..."?> </p>
-                            <span class="date"><?=$entrada['nombre'].' | '.$entrada['fecha']?></span>
+                            <span class="date"><?=$entrada['categoria'].' | '.$entrada['fecha']?></span>
                         </a>
                     </article>
             <?php 
