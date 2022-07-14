@@ -32,6 +32,19 @@ function getCategorias($conex){
     return $categorias;
 }
 
+function getLatestEntradas($conex){
+    $sql='select e.*,c.* from entradas e 
+    inner join categorias c ON c.id=e.categoria_id 
+    ORDER BY e.id DESC Limit 4;';
+    $query=mysqli_query($conex,$sql);
+    if ($query && mysqli_num_rows($query)>=1) {
+        $latestEntradas=$query;
+    }else{
+        $latestEntradas=false;
+    }
+    return $latestEntradas;
+}
+
 
 
 ?>

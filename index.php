@@ -4,36 +4,20 @@
         <!--Contenido principal-->
         <div id="main-content">
             <h1>Ultimas entradas</h1>
-            <article class="art-recents">
-                <a href="">
-                    <h2>Titulo de la entrada</h2>
-                    <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati laboriosam 
-                    iure suscipit saepe earum assumenda repellendus iusto tempora odit quos ducimus 
-                    rerum ratione necessitatibus, molestias neque autem in est numquam?
-                    </p>
-                </a>
-            </article>
-            <article class="art-recents">
-                <a href="">
-                    <h2>Titulo de la entrada</h2>
-                    <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati laboriosam 
-                    iure suscipit saepe earum assumenda repellendus iusto tempora odit quos ducimus 
-                    rerum ratione necessitatibus, molestias neque autem in est numquam?
-                    </p>
-                </a>
-            </article>
-            <article class="art-recents">
-                <a href="">
-                    <h2>Titulo de la entrada</h2>
-                    <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati laboriosam 
-                    iure suscipit saepe earum assumenda repellendus iusto tempora odit quos ducimus 
-                    rerum ratione necessitatibus, molestias neque autem in est numquam?
-                    </p>
-                </a>
-            </article>
+            <?php $entradasLatest=getLatestEntradas($db);
+                if($entradasLatest !== false):?>
+                <?php While($entrada=mysqli_fetch_assoc($entradasLatest)):?>
+                    <article class="art-recents">
+                        <a href="">
+                            <h2><?=$entrada['titulo']?></h2>
+                            <p><?= substr($entrada['descripcion'],0,200)." ..."?> </p>
+                            <span class="date"><?=$entrada['nombre'].' | '.$entrada['fecha']?></span>
+                        </a>
+                    </article>
+            <?php 
+                    endwhile;
+                endif;
+            ?>
             <div id="vertodas">
                 <a href="">Ver Todas las entradas</a>
            </div>
