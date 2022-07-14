@@ -149,7 +149,8 @@ input[type="password"]{
 }
 
 input[type="button"],
-input[type="submit"]{
+input[type="submit"],
+.button{
     margin-top: 5px;
     margin-bottom: 5px;
     display: block;
@@ -161,6 +162,23 @@ input[type="submit"]{
     padding: 7px;
 }
 
+.button{
+    text-align: center;
+    width: max-content;
+}
+.button-orange{
+    background: orange;
+    border-color: orangered;
+
+}
+.button-green{
+    background: green;
+    border-color: chartreuse;
+}
+.button-red{
+    background: red;
+    border-color: #444;
+}
 
 /*Contenido Principal*/
 #main-content a{
@@ -208,7 +226,7 @@ input[type="submit"]{
     background: #007ee5;
     border: 1px solid #156785;
     cursor: pointer;
-    width: 160px;
+    width: max-content;
     margin: 0px auto;
     margin-top: 40px;
 }
