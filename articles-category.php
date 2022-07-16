@@ -3,8 +3,9 @@
         
         <!--Contenido principal-->
         <div id="main-content">
-            <h1>Ultimas entradas</h1>
-            <?php $entradasLatest=getEntradas($db,true);
+        <?php $categoria=getCategoriaById($db,$_GET['id'])?>
+            <h1>Todas las entradas de "<?=$categoria['nombre']?>"</h1>
+            <?php $entradasLatest=getEntradas($db,null,$categoriaAc['id']);
                 if($entradasLatest !== false):?>
                 <?php While($entrada=mysqli_fetch_assoc($entradasLatest)):?>
                     <article class="art-recents">
@@ -18,8 +19,5 @@
                     endwhile;
                 endif;
             ?>
-            <div id="vertodas">
-                <a href="articles.php">Ver Todas las entradas</a>
-           </div>
         </div><!---fin principal--->       
 <?php require_once 'includes/footer.php';?>

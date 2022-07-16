@@ -31,20 +31,33 @@ function getCategorias($conex){
     }
     return $categorias;
 }
-
-function getLatestEntradas($conex){
-    $sql='select e.*,c.nombre as categoria from entradas e 
-    inner join categorias c ON c.id=e.categoria_id 
-    ORDER BY e.id DESC Limit 4;';
+function getCategoriaById($conex,$id){
+    $sql="SELECT * FROM categorias WHERE id=$id;";
     $query=mysqli_query($conex,$sql);
     if ($query && mysqli_num_rows($query)>=1) {
-        $latestEntradas=$query;
-    }else{
-        $latestEntradas=false;
+        $categoria=mysqli_fetch_assoc($query);
     }
-    return $latestEntradas;
+    return $categoria;
 }
 
-
-
+function getEntradas($conex,$limi=null,$cat_id=null){
+    $sql='select e.*,c.nombre as categoria from entradas e 
+    inner join categorias c ON c.id=e.categoria_id';
+    if (!empty($cat_id)) {
+        $sql.=" WHERE e.categoria_id=$cat_id";
+    }
+    
+    $sql .=" ORDER BY e.id DESC";
+    
+    if ($limi) {
+        $sql.=" LIMIT 4";
+    }
+    $query=mysqli_query($conex,$sql);
+    if ($query && mysqli_num_rows($query)>=1) {
+        $entradas=$query;
+    }else{
+        $entradas=false;
+    }
+    return $entradas;
+}
 ?>

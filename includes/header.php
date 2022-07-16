@@ -26,7 +26,7 @@ require_once 'includes/helper.php';
             <?php $categorias=getCategorias($db); 
                   if($categorias !== false):       ?>
                 <?php while ($categoria=mysqli_fetch_assoc($categorias)):?>
-                    <li><a href="categoria.php?id=<?=$categoria['id']?>"><?=$categoria['nombre']?></a></li>
+                    <li><a href="articles-category.php?id=<?=$categoria['id']?>"><?=$categoria['nombre']?></a></li>
                 <?php
                         endwhile;
                     endif;  

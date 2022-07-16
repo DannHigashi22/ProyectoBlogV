@@ -5,7 +5,7 @@
             <h3>Bienvenido <?=$_SESSION['usuario']['nombre'].' '.$_SESSION['usuario']['apellidos'] ?></h3>
             <a class="button button-green" href="create-art.php">Crear Entradas</a>
             <a class="button " href="create-category.php">Crear categoria</a>
-            <a class="button button-orange" href="">Mis Datos</a>
+            <a class="button button-orange" href="my-profile.php">Mis Datos</a>
             <a class="button button-red" href="logout.php">Cerrar Sesion</a>
         </div>
         <?php else :?>
@@ -56,7 +56,7 @@
                 <input type="password" name="password">
                 <?php echo isset($_SESSION['errores'])? mostrarError($_SESSION['errores'],'password') :'' ?>
 
-                <input type="submit"  name='submit' value="Entrar">
+                <input type="submit"  name='submit' value="Registrar">
             </form>
             <?php borrarErrores(); ?>
         </div>

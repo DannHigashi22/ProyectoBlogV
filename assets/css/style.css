@@ -25,6 +25,7 @@ body{
 }
 
 .alerta{
+    width: 95.5%;
     padding: 5px;
     font-size: 14px;
     color: white;

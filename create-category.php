@@ -14,7 +14,7 @@
                 <?=$_SESSION['completado']?>
                 </div>
             <?php elseif(isset($_SESSION['errores']['categoria'])) :?>
-                <div class="alerta alerta-exito">
+                <div class="alerta alerta-error">
                 <?=$_SESSION['errores']['categoria']?>
                 </div>
             <?php endif;?>   
