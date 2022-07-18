@@ -36,15 +36,21 @@ function getCategoriaById($conex,$id){
     $query=mysqli_query($conex,$sql);
     if ($query && mysqli_num_rows($query)>=1) {
         $categoria=mysqli_fetch_assoc($query);
+    }else {
+        $categoria=false;
     }
     return $categoria;
 }
 
-function getEntradas($conex,$limi=null,$cat_id=null){
+function getEntradas($conex,$limi=null,$cat_id=null,$busqueda=null){
     $sql='select e.*,c.nombre as categoria from entradas e 
     inner join categorias c ON c.id=e.categoria_id';
     if (!empty($cat_id)) {
         $sql.=" WHERE e.categoria_id=$cat_id";
+    }
+
+    if (!empty($busqueda)) {
+        $sql.=" WHERE e.titulo LIKE '%$busqueda%'";
     }
     
     $sql .=" ORDER BY e.id DESC";
@@ -60,4 +66,19 @@ function getEntradas($conex,$limi=null,$cat_id=null){
     }
     return $entradas;
 }
+
+function getEntradaById($conex,$id){
+    $sql="select e.*,c.nombre AS categoria, concat(u.nombre,' ',u.apellidos) AS usuario from entradas e 
+    inner join categorias c ON c.id=e.categoria_id 
+    inner join usuarios u ON e.usuario_id= u.id
+    WHERE e.id=$id";
+    $query=mysqli_query($conex,$sql);
+    if ($query && mysqli_num_rows($query)>=1) {
+        $entrada=mysqli_fetch_assoc($query);
+    }else{
+        $entrada=false;
+    }
+    return $entrada;
+}
+
 ?>

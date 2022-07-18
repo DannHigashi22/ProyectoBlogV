@@ -1,5 +1,4 @@
 <?php
-
 if (isset($_POST)) {
     require_once 'includes/conexion.php';
 
@@ -10,7 +9,7 @@ if (isset($_POST)) {
     //array con errores
     $errores=array();
 
-    //validacion de datos y escapar strings
+    //validacion de datos
     if (!empty($titulo)) {
         $titulo_validate=true;
     }else{
@@ -32,20 +31,42 @@ if (isset($_POST)) {
     }
     
     if (count($errores)==0) {
-        $sql ="INSERT INTO entradas VALUES (null,$usuario,$categoriaId,'$titulo','$descripcion',curdate());";
+        if (isset($_GET['editar'])) {
+            $entrada_id=$_GET['editar'];
+            $sql="update entradas SET categoria_id=$categoriaId,titulo='$titulo',descripcion='$descripcion'
+            where id=$entrada_id AND usuario_id=$usuario";
+        }else {
+            $sql ="INSERT INTO entradas VALUES (null,$usuario,$categoriaId,'$titulo','$descripcion',curdate());";
+        }
+
         $save=mysqli_query($db,$sql);
 
         if ($save) {
-         $_SESSION['completado']='La Entrada se a registrado con exito con exito';   
+            if (isset($_GET['editar'])) {
+                $_SESSION['completado']='La entrada se a actualizado con exito';}
+            else{
+            $_SESSION['completado']='La entrada se a registrado con exito';}   
         }else{
-            $_SESSION['errores']['entradas']='Fallo al registrar la entrada';
+            if (isset($_GET['editar'])) {
+                $_SESSION['errores']['entradas']='Fallo al Actualizar la entrada';}
+            else {
+                $_SESSION['errores']['entradas']='Fallo al registrar la entrada';}
+        }
+
+        if (isset($_GET['editar'])) {
+            header("location:article.php?id=".$_GET['editar']);
+        }else{
+            header('location:create-art.php');
         }
     }else{ 
-        $_SESSION['errores']=$errores;   
+        $_SESSION['errores']=$errores;
+        if (isset($_GET['editar'])) {
+            header("location:edit-article.php?id=".$_GET['editar']);
+        }else{
+            header('location:create-art.php');
+        }
+        
     }
 
 }
-header('location:create-art.php');
-
-
 ?>

@@ -1,5 +1,15 @@
 <!--Barra Lateral-->
     <aside id="sidebar">
+        <div id="register" class="block-aside">
+            <h3>Buscar</h3>
+            <form action="find.php" method="POST">
+                <input type="search" name="buscar">           
+                <input type="submit"  name='submit' value="Buscar">
+            </form>
+            <?php borrarErrores(); ?>
+        </div>
+
+
         <?php if (isset($_SESSION['usuario'])):?>
         <div id="user-login" class="block-aside">
             <h3>Bienvenido <?=$_SESSION['usuario']['nombre'].' '.$_SESSION['usuario']['apellidos'] ?></h3>

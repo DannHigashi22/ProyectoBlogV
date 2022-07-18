@@ -1,12 +1,12 @@
 <?php require_once 'includes/header.php';?>
 <?php require_once 'includes/sidebar.php'; ?>
-<?php $categoriaAc=getCategoriaById($db,$_GET['id']);
-    if (isset($categoriaAc['id'])) :
+<?php 
+    if (isset($_POST['buscar'])) :
 ?>    
         <!--Contenido principal-->
         <div id="main-content">
-            <h1>Todas las entradas de "<?=$categoriaAc['nombre']?>"</h1>
-            <?php $entradasCat=getEntradas($db,null,$categoriaAc['id']);
+            <h1>Busqueda de: <?=$_POST['buscar']?></h1>
+            <?php $entradasCat=getEntradas($db,null,null,$_POST['buscar']);
                 if(!empty($entradasCat) && mysqli_num_rows($entradasCat)>=1 ):?>
                 <?php While($entrada=mysqli_fetch_assoc($entradasCat)):?>
 
@@ -22,7 +22,7 @@
 
                 else:?>
                 <div class="">
-                <h2>Categoria sin entradas</h2>
+                <h2>Busqueda sin entradas</h2>
                 <strong>Que esperas para crear la tuya </strong>
                 </div>
             <?php

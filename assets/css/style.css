@@ -169,6 +169,7 @@ input[type="submit"],
 }
 
 .button{
+    color: white !important;
     text-align: center;
     width: max-content;
 }

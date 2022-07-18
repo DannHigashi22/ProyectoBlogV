@@ -8,7 +8,7 @@
                 if($entradasLatest !== false):?>
                 <?php While($entrada=mysqli_fetch_assoc($entradasLatest)):?>
                     <article class="art-recents">
-                        <a href="">
+                        <a href="article.php?id=<?=$entrada['id']?>">
                             <h2><?=$entrada['titulo']?></h2>
                             <p><?= substr($entrada['descripcion'],0,200)." ..."?> </p>
                             <span class="date"><?=$entrada['categoria'].' | '.$entrada['fecha']?></span>
